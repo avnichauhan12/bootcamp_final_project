@@ -32,7 +32,7 @@ pipeline {
        sh '''
             
             aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.us-east-2.amazonaws.com
-            cd yolo5
+            @cd /bootcamp_final_project/yolo5
             docker build -t avni-project .
             docker tag avni-project:latest 854171615125.dkr.ecr.us-east-2.amazonaws.com/avni-project:latest
             docker push 854171615125.dkr.ecr.us-east-2.amazonaws.com/avni-project:latest
