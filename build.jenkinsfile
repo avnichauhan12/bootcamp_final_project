@@ -29,13 +29,13 @@ pipeline {
         }
         stage('Build Yolo5 app') {
    steps {
-       sh '
+       sh '''
             
             aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 854171615125.dkr.ecr.eu-north-1.amazonaws.com
             docker build -t avni_yoloproject .
             docker tag avni_yoloproject:latest 854171615125.dkr.ecr.eu-north-1.amazonaws.com/avni_yoloproject:latest
             docker push 854171615125.dkr.ecr.eu-north-1.amazonaws.com/avni_yoloproject:latest
-       '
+       '''
    }
 }
     }
