@@ -1,5 +1,9 @@
 pipeline {
             agent any
+            environment {
+        ECR_URL = '854171615125.dkr.ecr.us-east-2.amazonaws.com/vidyolobuild'
+        REPO_NAME = 'vidyolobuild'
+    }
 
             stages {
                 stage('Authenticating') {
@@ -15,7 +19,11 @@ pipeline {
 
                 stage('push to ECR') {
                     steps {
-                        sh 'echo "Ecr"'
+                        sh '''
+                        docker tag ${REPO_NAME} ${ECR_URL}/${REPO_NAME}:0.0.${BUILD_NUMBER}
+                        docker push ${ECR_URL}/${REPO_NAME}:0.0.${BUILD_NUMBER}
+                        '''
+
                     }
                 }
                 stage('Build Yolo5 app') {
