@@ -40,7 +40,7 @@ pipeline {
 stage('Trigger Deploy') {
     steps {
         build job: 'yolo5deploy', wait: false, parameters: [
-            string(name: 'YOLO5_IMAGE_URL', value: "854171615125.dkr.ecr.us-east-2.amazonaws.com/vidyolobuild:latest")
+            string(name: 'YOLO5_IMAGE_URL', value: "${ECR_URL}/${REPO_NAME}:0.0.${BUILD_NUMBER}")
         ]
     }
 }
